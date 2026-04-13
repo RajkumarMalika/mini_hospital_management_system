@@ -1,0 +1,39 @@
+# ========================
+# Secrets & Credentials
+# ========================
+.env
+
+# ========================
+# Python & Django
+# ========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# Google API Credentials
+credentials.json
+token.json
+
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Django specific
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# ========================
+# Serverless & Node.js
+# ========================
+node_modules/
+.serverless/
+
+# ========================
+# OS Specific
+# ========================
+.DS_Store
+Thumbs.db

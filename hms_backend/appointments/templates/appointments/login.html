@@ -1,0 +1,23 @@
+{% extends 'appointments/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h4 class="mb-0">Login</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                </form>
+                <div class="text-center">
+                    <a href="#" class="btn btn-outline-danger w-100">Sign in with Google</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

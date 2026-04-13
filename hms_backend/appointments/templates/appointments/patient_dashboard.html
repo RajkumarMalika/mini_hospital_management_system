@@ -1,0 +1,45 @@
+{% extends 'appointments/base.html' %}
+
+{% block content %}
+<h3 class="mb-4">Available Appointments</h3>
+
+<div class="row">
+    {% for slot in available_slots %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-primary">
+            <div class="card-body text-center">
+                <h5 class="card-title">Dr. {{ slot.doctor.username }}</h5>
+                <hr>
+                <p class="card-text mb-1"><strong>Date:</strong> {{ slot.date }}</p>
+                <p class="card-text mb-3">
+                    <strong>Time:</strong> {{ slot.start_time|time:"H:i" }} to {{ slot.end_time|time:"H:i" }}
+                </p>
+                
+                <form method="post" action="{% url 'book_appointment' slot.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary w-100">
+                        Book This Slot
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center mt-5">
+        <h4 class="text-muted">No appointments are currently available. Please check back later.</h4>
+    </div>
+    {% endfor %}
+</div>
+
+<h4 class="mt-5 mb-3">Your Upcoming Appointments</h4>
+<ul class="list-group">
+    {% for booking in my_bookings %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Appointment with Dr. {{ booking.slot.doctor.username }} on {{ booking.slot.date }} at {{ booking.slot.start_time|time:"H:i" }}
+            <span class="badge bg-info rounded-pill">Confirmed</span>
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted">You have no upcoming appointments.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

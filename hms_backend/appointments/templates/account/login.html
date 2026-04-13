@@ -1,0 +1,43 @@
+{% extends 'appointments/base.html' %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h4 class="mb-0">Sign In</h4>
+            </div>
+            <div class="card-body p-4">
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary w-100">Continue</button>
+                </form>
+
+                <div class="text-center my-3 text-muted">or</div>
+                <a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark w-100">Continue with Google</a>
+
+                <p class="text-center mt-3 mb-0">
+                    New here?
+                    <a href="{% url 'account_signup' %}">Create your account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

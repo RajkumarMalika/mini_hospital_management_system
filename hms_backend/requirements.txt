@@ -1,0 +1,15 @@
+# Web Framework
+Django==5.0.3
+django-allauth==65.9.0
+
+# PostgreSQL Database Adapter (Modern Version 3)
+psycopg[binary]
+
+# For making HTTP requests to your Serverless Email service
+requests==2.31.0
+
+# Google Calendar API Dependencies
+google-api-python-client==2.122.0
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.0
+python-dotenv==1.0.1

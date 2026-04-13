@@ -1,0 +1,79 @@
+:root {
+    --hms-bg: #f3f7ff;
+    --hms-surface: #ffffff;
+    --hms-nav: #0f3d5e;
+    --hms-accent: #1d7b84;
+    --hms-accent-strong: #155f66;
+    --hms-text: #102a43;
+}
+
+body.hms-bg {
+    color: var(--hms-text);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(29, 123, 132, 0.15), transparent 42%),
+        radial-gradient(circle at 90% 0%, rgba(15, 61, 94, 0.16), transparent 35%),
+        linear-gradient(180deg, #f9fbff 0%, var(--hms-bg) 100%);
+    min-height: 100vh;
+}
+
+.hms-nav {
+    background: linear-gradient(90deg, var(--hms-nav) 0%, #1b587c 100%);
+    box-shadow: 0 8px 24px rgba(15, 61, 94, 0.2);
+}
+
+.hms-main .card {
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(13, 42, 67, 0.08);
+    animation: rise-in 320ms ease-out;
+}
+
+.hms-main .card-header {
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+}
+
+.btn-primary {
+    background-color: var(--hms-accent);
+    border-color: var(--hms-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--hms-accent-strong);
+    border-color: var(--hms-accent-strong);
+}
+
+.hms-main input,
+.hms-main select,
+.hms-main textarea {
+    border-radius: 10px;
+    border: 1px solid #d5deea;
+    padding: 0.55rem 0.75rem;
+    width: 100%;
+}
+
+.hms-main input:focus,
+.hms-main select:focus,
+.hms-main textarea:focus {
+    outline: 0;
+    border-color: #89b1c3;
+    box-shadow: 0 0 0 3px rgba(29, 123, 132, 0.16);
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .hms-main {
+        padding-top: 0.2rem;
+    }
+}

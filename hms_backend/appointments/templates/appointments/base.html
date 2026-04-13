@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini HMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appointments/style.css' %}">
+</head>
+<body class="hms-bg">
+
+<nav class="navbar navbar-expand-lg navbar-dark hms-nav mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Mini HMS</a>
+        <div class="d-flex text-white align-items-center">
+            {% if user.is_authenticated %}
+                <span class="me-3">Welcome, {{ user.username|default:user.email }}!</span>
+                
+                <form action="{% url 'account_logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-sm me-2">Login</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-light btn-sm">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <main class="hms-main pb-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
